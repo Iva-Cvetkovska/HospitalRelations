@@ -1,0 +1,49 @@
+﻿@model HospitalScheduling.Models.Doctor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Doctor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hospital.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hospital.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+    <hr />
+    @if(ViewBag.Patients.Count > 0) 
+    { 
+        <h4>Patients:</h4>
+        <ul>
+            @foreach (HospitalScheduling.Models.Patient Patient in ViewBag.Patients)
+            {
+                <li>@Html.ActionLink(Patient.Name, "PatientDetails", new { id = Patient.Id })</li>
+            }
+        </ul>
+    }
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<button class="btn btn-dark">
+    @Html.ActionLink("Add new patient", "AddPatient", new { id = Model.Id }, new { @style = "text-decoration:none; color: white" })
+</button>

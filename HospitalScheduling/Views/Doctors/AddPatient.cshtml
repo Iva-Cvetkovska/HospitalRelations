@@ -1,0 +1,23 @@
+﻿@model HospitalScheduling.Models.PatientAndDoctor
+
+@{
+    ViewBag.Title = "AddPatient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add new patient for @Model.Doctor.Name</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.PatientId, new SelectList(Model.Patients, "Id", "Name"), 
+        new { @class = "form-control" })
+
+        @Html.HiddenFor(m => m.DoctorId)
+    </div>
+
+    <div class="form-group mt-2">
+        <button type="submit" class="btn btn-success">Add patient to doctor</button>
+    </div>
+}
+
